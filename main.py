@@ -46,6 +46,7 @@ usernames = []
 
 # Function to add a new password 
 def add_password():
+    print("Password is ready")
     """
     Add a new password to the password manager.
 
