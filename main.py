@@ -26,7 +26,7 @@ def caesar_decrypt(text, shift):
 # Password strength checker function (optional)
 def is_strong_password(password):
     """
-    Checks if the password is strong.1
+    Checks if the password is strong.
     A strong password includes at least one uppercase letter, one lowercase letter,
     one digit, one special character, and is at least 8 characters long.
     """
