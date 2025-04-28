@@ -25,6 +25,33 @@ def caesar_decrypt(text, shift):
 
 # Password strength checker function (optional)
 def is_strong_password(password):
+    """
+    Check if the given password is strong.
+
+    A strong password must:
+    - Be at least 8 characters long
+    - Contain at least one uppercase letter
+    - Contain at least one lowercase letter
+    - Contain at least one digit
+    - Contain at least one special character
+
+    Args:
+        password (str): The password to check.
+
+    Returns:
+        bool: True if the password is strong, False otherwise.
+    """
+    if len(password) < 8:
+        return False
+    if not any(char.isupper() for char in password):
+        return False
+    if not any(char.islower() for char in password):
+        return False
+    if not any(char.isdigit() for char in password):
+        return False
+    if not any(char in string.punctuation for char in password):
+        return False
+    return True
     # ...
 
 # Password generator function (optional)
@@ -96,6 +123,7 @@ def save_passwords():
     Returns:
         None
     """
+
     # Combine the data into a list of dictionaries
     password_data = [
         {"website": website, "username": username, "password": password}
