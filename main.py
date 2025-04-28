@@ -68,6 +68,22 @@ def get_password():
     Returns:
         None
     """
+    website = input("Enter the website name: ")
+    
+    if website in websites:
+        index = websites.index(website)
+        username = usernames[index]
+        encrypted_password = encrypted_passwords[index]
+        
+        # Decrypted password output
+        shift = 3  # Shift value used for encryption (e.g., 3)
+        decrypted_password = caesar_decrypt(encrypted_password, shift)
+        
+        print(f"Website: {website}")
+        print(f"Username: {username}")
+        print(f"Password: {decrypted_password}")
+    else:
+        print("No password found for the given website.")
 
 # Function to save passwords to a JSON file 
 def save_passwords():
