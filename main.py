@@ -46,6 +46,7 @@ usernames = []
 
 # Function to add a new password 
 def add_password():
+    print("Password is ready")
     """
     Add a new password to the password manager.
 
@@ -79,14 +80,23 @@ def save_passwords():
     Returns:
         None
     """
+    # Combine the data into a list of dictionaries
+    password_data = [
+        {"website": website, "username": username, "password": password}
+        for website, username, password in zip(websites, usernames, encrypted_passwords)
+    ]
+
+    # Save the data to a file
+    with open("vault.txt", "w") as file:
+        json.dump(password_data, file, indent=4)
+
+    print("Passwords saved successfully!")
+
 
     Returns:
         None
     """
-
 # Function to load passwords from a JSON file 
-def load_passwords():
-     """
     Load passwords from a file into the password vault.
 
     This function should load passwords, websites, and usernames from a text
@@ -94,6 +104,28 @@ def load_passwords():
 
     Returns:
         None
+    """
+    
+def load_passwords():
+    global websites, usernames, encrypted_passwords
+
+    try:
+        # Open the file and load the data
+        with open("vault.txt", "r") as file:
+            password_data = json.load(file)
+
+        # Clear existing lists and populate them with loaded data
+        websites = [entry["website"] for entry in password_data]
+        usernames = [entry["username"] for entry in password_data]
+        encrypted_passwords = [entry["password"] for entry in password_data]
+
+        print("Passwords loaded successfully!")
+
+    except FileNotFoundError:
+        print("No saved passwords found. Please save passwords first.")
+    except json.JSONDecodeError:
+        print("Error: The file is not in the correct format.")
+
 
   # Main method
 def main():
